@@ -75,13 +75,13 @@ public class ContextNegativeTest extends TestCase {
 	}
 
 	static class BaseComponentWithIllegalField {
-		@Dependency(impl = TestComponentImpl.class)
+		@Dependency(TestComponentImpl.class)
 		private final static TestComponent2 testComponent = null;
 
 	}
 
 	static class BaseComponentWithIllegalImpl {
-		@Dependency(impl = TestComponentImpl3.class)
+		@Dependency(TestComponentImpl3.class)
 		private TestComponent testComponent;
 
 	}
@@ -105,7 +105,7 @@ public class ContextNegativeTest extends TestCase {
 	}
 
 	static class BaseComponentWithWrongImpl {
-		@Dependency(impl = TestComponentImpl.class)
+		@Dependency(TestComponentImpl.class)
 		private TestComponent testComponent;
 
 	}

@@ -14,7 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Bjorn
  */
 class DependencyUtil {
-	private static final LoggerWrapper logger = new LoggerWrapper(FieldWrapper.class);
+	private static final LoggerWrapper LOGGER = new LoggerWrapper(FieldWrapper.class);
 
 	private final ConcurrentHashMap<Class<?>, Object> instancesMap;
 	private final Object component;
@@ -88,12 +88,13 @@ class DependencyUtil {
 		 */
 		private Object createInstance() {
 			Object returnValue;
-			if (!dependency.impl().equals(Dependency.Nothing.class)) {
-				if (!fieldClass.isAssignableFrom(dependency.impl())) {
-					throw new IllegalArgumentException(dependency.impl().getName() + " is not a subclass of "
+			final Class<?> implementingClass = dependency.value();
+			if (!implementingClass.equals(Dependency.Nothing.class)) {
+				if (!fieldClass.isAssignableFrom(implementingClass)) {
+					throw new IllegalArgumentException(implementingClass.getName() + " is not a subclass of "
 							+ fieldClass.getName());
 				}
-				returnValue = createObject(dependency.impl(), false);
+				returnValue = createObject(implementingClass, false);
 			} else if (fieldClass.isInterface()) {
 				returnValue = createInterfaceInstance();
 			} else {
@@ -154,14 +155,14 @@ class DependencyUtil {
 				return newInstance;
 			} catch (InstantiationException e) {
 				if (returnNullOnException) {
-					logger.debug("Could not create instance of " + clazz.getName(), e);
+					LOGGER.debug("Could not create instance of " + clazz.getName(), e);
 					return null;
 				} else {
 					throw new RuntimeException("Cannot create an instance of " + clazz.getName(), e);
 				}
 			} catch (IllegalAccessException e) {
 				if (returnNullOnException) {
-					logger.debug("Could not create instance of " + clazz.getName(), e);
+					LOGGER.debug("Could not create instance of " + clazz.getName(), e);
 					return null;
 				} else {
 					throw new RuntimeException("Cannot create an instance of " + clazz.getName(), e);
@@ -208,7 +209,7 @@ class DependencyUtil {
 				// Get a File object for the package
 				URL url = clazz.getResource(pathName);
 				if (url == null) {
-					logger.debug("Could not find URL for " + pathName);
+					LOGGER.debug("Could not find URL for " + pathName);
 					continue;
 				}
 				File directory = new File(url.getFile());
@@ -231,7 +232,7 @@ class DependencyUtil {
 									returnValue.add(valueClass);
 								}
 							} catch (ClassNotFoundException e) {
-								logger.debug("Could not find create instance of " + fullClassName);
+								LOGGER.debug("Could not find create instance of " + fullClassName);
 							}
 						}
 					}
