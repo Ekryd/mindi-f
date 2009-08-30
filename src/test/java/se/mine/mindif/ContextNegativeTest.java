@@ -1,4 +1,4 @@
-package se.mine.mindi;
+package se.mine.mindif;
 
 import junit.framework.TestCase;
 
@@ -12,7 +12,7 @@ public class ContextNegativeTest extends TestCase {
 			fail();
 		} catch (RuntimeException rex) {
 			assertEquals("Cannot modify field testComponent in class "
-					+ "se.mine.mindi.ContextNegativeTest$BaseComponentWithIllegalField", rex.getMessage());
+					+ "se.mine.mindif.ContextNegativeTest$BaseComponentWithIllegalField", rex.getMessage());
 		}
 	}
 
@@ -22,7 +22,7 @@ public class ContextNegativeTest extends TestCase {
 			new Context().inject(base);
 			fail();
 		} catch (RuntimeException rex) {
-			assertEquals("Cannot create an instance of " + "se.mine.mindi.ContextNegativeTest$TestComponentImpl3", rex
+			assertEquals("Cannot create an instance of " + "se.mine.mindif.ContextNegativeTest$TestComponentImpl3", rex
 					.getMessage());
 		}
 	}
@@ -33,7 +33,7 @@ public class ContextNegativeTest extends TestCase {
 			new Context().inject(base);
 			fail();
 		} catch (RuntimeException rex) {
-			assertEquals("Cannot create an instance of " + "se.mine.mindi.ContextNegativeTest$TestComponentImpl3", rex
+			assertEquals("Cannot create an instance of " + "se.mine.mindif.ContextNegativeTest$TestComponentImpl3", rex
 					.getMessage());
 		}
 	}
@@ -45,7 +45,7 @@ public class ContextNegativeTest extends TestCase {
 			fail();
 		} catch (IllegalArgumentException iaex) {
 			assertEquals("Found more than one implementation of interface: "
-					+ "se.mine.mindi.ContextNegativeTest$TestComponent2" + ". Please use either of: \n"
+					+ "se.mine.mindif.ContextNegativeTest$TestComponent2" + ". Please use either of: \n"
 					+ "@Dependency(impl = TestComponentImpl.class) \n"
 					+ "@Dependency(impl = TestComponentImpl2.class) \n" + "private TestComponent2 testComponent", iaex
 					.getMessage());
@@ -59,7 +59,7 @@ public class ContextNegativeTest extends TestCase {
 			fail();
 		} catch (IllegalArgumentException iaex) {
 			assertEquals("Could not find concrete implementation of interface: "
-					+ "se.mine.mindi.ContextNegativeTest$TestComponent", iaex.getMessage());
+					+ "se.mine.mindif.ContextNegativeTest$TestComponent", iaex.getMessage());
 		}
 	}
 
@@ -69,8 +69,8 @@ public class ContextNegativeTest extends TestCase {
 			new Context().inject(base);
 			fail();
 		} catch (IllegalArgumentException iaex) {
-			assertEquals("se.mine.mindi.ContextNegativeTest$TestComponentImpl " + "is not a subclass of "
-					+ "se.mine.mindi.ContextNegativeTest$TestComponent", iaex.getMessage());
+			assertEquals("se.mine.mindif.ContextNegativeTest$TestComponentImpl " + "is not a subclass of "
+					+ "se.mine.mindif.ContextNegativeTest$TestComponent", iaex.getMessage());
 		}
 	}
 

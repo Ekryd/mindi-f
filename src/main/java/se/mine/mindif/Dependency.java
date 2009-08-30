@@ -1,4 +1,4 @@
-package se.mine.mindi;
+package se.mine.mindif;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;

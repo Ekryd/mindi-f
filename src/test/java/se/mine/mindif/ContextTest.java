@@ -1,5 +1,7 @@
-package se.mine.mindi;
+package se.mine.mindif;
 
+import se.mine.mindif.Context;
+import se.mine.mindif.Dependency;
 import junit.framework.TestCase;
 
 public class ContextTest extends TestCase {
