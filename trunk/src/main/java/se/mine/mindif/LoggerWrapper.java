@@ -2,11 +2,22 @@ package se.mine.mindif;
 
 import java.lang.reflect.Method;
 
+/**
+ * Wrapper för a slf4j logger.
+ *
+ * @author Bjorn
+ */
 public class LoggerWrapper {
+
 	private Object logger;
 	private Method debugMethodWithException;
 	private Method debugMethod;
 
+	/**
+	 * Instantiates a new logger wrapper.
+	 *
+	 * @param classToBeLogged the class to be logged
+	 */
 	public LoggerWrapper(final Class<?> classToBeLogged) {
 		try {
 			final Class<?> loggerFactoryClass = Class.forName("org.slf4j.LoggerFactory");
@@ -20,6 +31,11 @@ public class LoggerWrapper {
 		}
 	}
 
+	/**
+	 * Add a debug message
+	 *
+	 * @param msg the msg
+	 */
 	public void debug(final String msg) {
 		if (debugMethod != null) {
 			try {
@@ -31,6 +47,12 @@ public class LoggerWrapper {
 		}
 	}
 
+	/**
+	 * Add a debug message
+	 *
+	 * @param msg the msg
+	 * @param exception the exception
+	 */
 	public void debug(final String msg, final Throwable exception) {
 		if (debugMethodWithException != null) {
 			try {
