@@ -1,4 +1,4 @@
-package se.mine.mindi;
+package se.mine.mindif;
 
 import java.util.concurrent.ConcurrentHashMap;
 

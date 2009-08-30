@@ -1,4 +1,4 @@
-package se.mine.mindi;
+package se.mine.mindif;
 
 import java.io.File;
 import java.lang.reflect.Field;
