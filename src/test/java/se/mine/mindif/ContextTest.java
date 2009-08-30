@@ -64,7 +64,7 @@ public class ContextTest extends TestCase {
 	}
 
 	static class BaseComponentWithExplicit {
-		@Dependency(impl = TestComponentImpl.class)
+		@Dependency(TestComponentImpl.class)
 		private TestComponent testComponent;
 
 		public Object getComponent() {
@@ -82,7 +82,7 @@ public class ContextTest extends TestCase {
 	}
 
 	static class BaseComponentWithMultiImplExplicit implements BaseComponentIF {
-		@Dependency(impl = TestComponentImpl2.class)
+		@Dependency(TestComponentImpl2.class)
 		private TestComponent2 testComponent;
 
 		public Object getComponent() {
@@ -100,7 +100,7 @@ public class ContextTest extends TestCase {
 	}
 
 	static class SuperComponentImpl {
-		@Dependency(impl = BaseComponentWithMultiImplExplicit.class)
+		@Dependency(BaseComponentWithMultiImplExplicit.class)
 		private BaseComponentIF testComponent;
 
 		@Dependency
@@ -109,7 +109,7 @@ public class ContextTest extends TestCase {
 		@Dependency
 		private BaseComponentIF2 testComponent3;
 
-		@Dependency(impl = BaseComponentWithMultiImplExplicit.class)
+		@Dependency(BaseComponentWithMultiImplExplicit.class)
 		private BaseComponentIF testComponent_2;
 
 		@Dependency

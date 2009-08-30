@@ -24,7 +24,7 @@ import java.util.concurrent.ConcurrentHashMap;
  *
  * The dependency can be an interface with a specified implementing class
  * <code>
- *   @Dependency(impl = AnotherComponentImpl.class)
+ *   @Dependency(AnotherComponentImpl.class)
  *   private AnotherComponent anotherComponent;
  * </code>
  *

@@ -21,10 +21,10 @@ public @interface Dependency {
 	 *
 	 * @return
 	 */
-	Class<?> impl() default Nothing.class;
+	Class<?> value() default Nothing.class;
 
 	/**
-	 * Default value for implementation, indicated that the framework should
+	 * Default value for implementation, it indicates that the framework should
 	 * find the concrete class.
 	 *
 	 * @author Bjorn
