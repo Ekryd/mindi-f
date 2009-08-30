@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>mindi-f</groupId>
+  <groupId>com.google.code.mindi-f</groupId>
   <artifactId>mindi-f</artifactId>
   <version>0.0.1</version>
   <dependencies>
@@ -99,6 +99,40 @@
     </plugins>
   </reporting>
   <name>MinDI F</name>
-  <description>Minimal Dependency Injection Framework</description>
+  <description>Minimal Dependency Injection Framework.
+Allows a developer to use dependency injection for small scale projects, such as tools or plugins.</description>
+  <url>http://code.google.com/p/mindi-f/</url>
+  <inceptionYear>2009</inceptionYear>
+  <licenses>
+    <license>
+      <name>New BSD License</name>
+      <url>http://en.wikipedia.org/wiki/BSD_licenses</url>
+      <distribution>repo</distribution>
+      <comments>Whatever</comments>
+    </license>
+  </licenses>
+  <developers>
+    <developer>
+      <id>bjorn.ekryd</id>
+      <name>Björn Ekryd</name>
+      <email>bjorn.ekryd(at)gmail(dot)com</email>
+      <url>http://www.linkedin.com/in/bjornekryd</url>
+      <roles>
+        <role>Architect</role>
+        <role>Developer</role>
+      </roles>
+      <timezone>+1</timezone>
+    </developer>
+  </developers>
+  <issueManagement>
+    <system>Google Code</system>
+    <url>http://code.google.com/p/mindi-f/issues/list</url>
+  </issueManagement>
+  <scm>
+    <connection>scm:svn:http://mindi-f.googlecode.com/svn/trunk/</connection>
+    <developerConnection>scm:svn:https://mindi-f.googlecode.com/svn/trunk/</developerConnection>
+    <tag>HEAD</tag>
+    <url>http://code.google.com/p/mindi-f/source/browse/</url>
+  </scm>
 </project>
 
