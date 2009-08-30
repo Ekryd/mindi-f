@@ -30,6 +30,6 @@ public @interface Dependency {
 	 * @author Bjorn
 	 *
 	 */
-	enum Nothing {
+	static interface Nothing {
 	}
 }
