@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.google.code.mindi-f</groupId>
   <artifactId>mindi-f</artifactId>
-  <version>0.0.1</version>
+  <version>0.1.0</version>
   <dependencies>
     <dependency>
       <groupId>junit</groupId>
@@ -12,16 +12,16 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-    	<groupId>org.slf4j</groupId>
-    	<artifactId>slf4j-api</artifactId>
-    	<version>1.5.8</version>
-    	<scope>test</scope>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-api</artifactId>
+      <version>1.5.8</version>
+      <scope>test</scope>
     </dependency>
     <dependency>
-    	<groupId>org.slf4j</groupId>
-    	<artifactId>slf4j-nop</artifactId>
-    	<version>1.5.8</version>
-    	<scope>test</scope>
+      <groupId>org.slf4j</groupId>
+      <artifactId>slf4j-nop</artifactId>
+      <version>1.5.8</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
   <properties>
@@ -68,6 +68,13 @@
         </executions>
       </plugin>
     </plugins>
+    <extensions>
+      <extension>
+        <groupId>org.jvnet.wagon-svn</groupId>
+        <artifactId>wagon-svn</artifactId>
+        <version>1.9</version>
+      </extension>
+    </extensions>
   </build>
   <reporting>
     <plugins>
@@ -146,5 +153,12 @@ Allows a developer to use dependency injection for small scale projects, such as
     <tag>HEAD</tag>
     <url>http://code.google.com/p/mindi-f/source/browse/</url>
   </scm>
+  <distributionManagement>
+    <repository>
+      <uniqueVersion>false</uniqueVersion>
+      <id>googlecode</id>
+      <url>svn:https://mindi-f.googlecode.com/svn/repo</url>
+    </repository>
+  </distributionManagement>
 </project>
 
