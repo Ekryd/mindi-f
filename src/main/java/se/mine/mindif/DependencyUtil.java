@@ -14,6 +14,7 @@ import java.util.concurrent.ConcurrentHashMap;
  * @author Bjorn
  */
 class DependencyUtil {
+	private static final LoggerWrapper logger = new LoggerWrapper(FieldWrapper.class);
 
 	private final ConcurrentHashMap<Class<?>, Object> instancesMap;
 	private final Object component;
@@ -152,15 +153,15 @@ class DependencyUtil {
 				instancesMap.put(clazz, newInstance);
 				return newInstance;
 			} catch (InstantiationException e) {
-				e.printStackTrace();
 				if (returnNullOnException) {
+					logger.debug("Could not create instance of " + clazz.getName(), e);
 					return null;
 				} else {
 					throw new RuntimeException("Cannot create an instance of " + clazz.getName(), e);
 				}
 			} catch (IllegalAccessException e) {
-				e.printStackTrace();
 				if (returnNullOnException) {
+					logger.debug("Could not create instance of " + clazz.getName(), e);
 					return null;
 				} else {
 					throw new RuntimeException("Cannot create an instance of " + clazz.getName(), e);
@@ -207,6 +208,7 @@ class DependencyUtil {
 				// Get a File object for the package
 				URL url = clazz.getResource(pathName);
 				if (url == null) {
+					logger.debug("Could not find URL for " + pathName);
 					continue;
 				}
 				File directory = new File(url.getFile());
@@ -221,15 +223,15 @@ class DependencyUtil {
 							// removes the .class extension
 							String classname = files[i].substring(0, files[i].length() - ".class".length());
 							// Try to create an instance of the object
+							final String fullClassName = packageName + "." + classname;
 							try {
-								final Class<?> valueClass = Class.forName(packageName + "." + classname);
+								final Class<?> valueClass = Class.forName(fullClassName);
 								if (!valueClass.isInterface() && !valueClass.isEnum()
 										&& fieldClass.isAssignableFrom(valueClass)) {
 									returnValue.add(valueClass);
 								}
 							} catch (ClassNotFoundException e) {
-								// TODO Auto-generated catch block
-								e.printStackTrace();
+								logger.debug("Could not find create instance of " + fullClassName);
 							}
 						}
 					}
@@ -237,6 +239,5 @@ class DependencyUtil {
 			}
 			return returnValue;
 		}
-
 	}
 }

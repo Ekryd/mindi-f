@@ -1,7 +1,5 @@
 package se.mine.mindif;
 
-import se.mine.mindif.Context;
-import se.mine.mindif.Dependency;
 import junit.framework.TestCase;
 
 public class ContextTest extends TestCase {
@@ -43,6 +41,7 @@ public class ContextTest extends TestCase {
 		assertEquals(BaseComponentWithImpl.class, base.testComponent2.getClass());
 		assertNotNull(base.testComponent3);
 		assertEquals(BaseComponentWithUnspec.class, base.testComponent3.getClass());
+		assertNull(base.noDependency);
 	}
 
 	public void testSingleton() {
@@ -118,6 +117,8 @@ public class ContextTest extends TestCase {
 
 		@Dependency
 		private BaseComponentIF2 testComponent3_2;
+
+		private TestComponent2 noDependency;
 	}
 
 	static interface TestComponent {
