@@ -46,9 +46,8 @@ public class ContextNegativeTest extends TestCase {
 		} catch (IllegalArgumentException iaex) {
 			assertEquals("Found more than one implementation of interface: "
 					+ "se.mine.mindif.ContextNegativeTest$TestComponent2" + ". Please use either of: \n"
-					+ "@Dependency(impl = TestComponentImpl.class) \n"
-					+ "@Dependency(impl = TestComponentImpl2.class) \n" + "private TestComponent2 testComponent", iaex
-					.getMessage());
+					+ "@Dependency(TestComponentImpl.class) \n" + "@Dependency(TestComponentImpl2.class) \n"
+					+ "private TestComponent2 testComponent", iaex.getMessage());
 		}
 	}
 

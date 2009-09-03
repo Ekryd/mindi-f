@@ -1,9 +1,7 @@
 package se.mine.mindif;
 
-import java.io.File;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -112,7 +110,7 @@ class DependencyUtil {
 		 * @return the object
 		 */
 		private Object createInterfaceInstance() {
-			List<Class<?>> concreteClasses = getSubClasses(fieldClass);
+			List<Class<?>> concreteClasses = new SubclassLocator(fieldClass).getSubClasses();
 			List<Object> concreteObject = new ArrayList<Object>();
 			for (Class<?> concreteClass : concreteClasses) {
 				final Object object = createObject(concreteClass, true);
@@ -129,12 +127,17 @@ class DependencyUtil {
 						"Found more than one implementation of interface: ").append(fieldClass.getName()).append(
 						". Please use either of: \n");
 				for (Object object : concreteObject) {
-					msg.append("@Dependency(impl = ").append(object.getClass().getSimpleName()).append(".class) \n");
+					msg.append("@Dependency(").append(object.getClass().getSimpleName()).append(".class) \n");
 				}
 				msg.append(Modifier.toString(field.getModifiers())).append(" ").append(fieldClass.getSimpleName())
 						.append(" ").append(field.getName());
 				throw new IllegalArgumentException(msg.toString());
 			}
+			final StringBuilder msg = new StringBuilder().append("Found instance for interface ").append(
+					fieldClass.getName()).append(". But please use \n");
+			msg.append("@Dependency(").append(concreteObject.get(0).getClass().getSimpleName()).append(
+					".class) to improve type safety and instantiation speed");
+			LOGGER.info(msg.toString());
 			return concreteObject.get(0);
 		}
 
@@ -170,75 +173,5 @@ class DependencyUtil {
 			}
 		}
 
-		/**
-		 * Gets the path name from a package name.
-		 *
-		 * @param packageName the package name
-		 *
-		 * @return the path name
-		 */
-		private String getPathName(final String packageName) {
-			// Code from JWhich
-			// ======
-			// Translate the package name into an absolute path
-			String path = packageName;
-			if (!path.startsWith("/")) {
-				path = "/" + path;
-			}
-			path = path.replace('.', '/');
-			return path;
-		}
-
-		/**
-		 * Gets the sub classes for a class.
-		 *
-		 * @param fieldClass the field class
-		 *
-		 * @return the sub classes
-		 */
-		private List<Class<?>> getSubClasses(final Class<?> fieldClass) {
-			// Originally taken from
-			// http://www.javaworld.com/javaworld/javatips/jw-javatip113.html
-
-			List<Class<?>> returnValue = new ArrayList<Class<?>>();
-			final Package[] packages = Package.getPackages();
-			for (Package package1 : packages) {
-				final String packageName = package1.getName();
-				String pathName = getPathName(packageName);
-
-				// Get a File object for the package
-				URL url = clazz.getResource(pathName);
-				if (url == null) {
-					LOGGER.debug("Could not find URL for " + pathName);
-					continue;
-				}
-				File directory = new File(url.getFile());
-
-				if (directory.exists()) {
-					// Get the list of the files contained in the package
-					String[] files = directory.list();
-					for (int i = 0; i < files.length; i++) {
-
-						// we are only interested in .class files
-						if (files[i].endsWith(".class")) {
-							// removes the .class extension
-							String classname = files[i].substring(0, files[i].length() - ".class".length());
-							// Try to create an instance of the object
-							final String fullClassName = packageName + "." + classname;
-							try {
-								final Class<?> valueClass = Class.forName(fullClassName);
-								if (!valueClass.isInterface() && !valueClass.isEnum()
-										&& fieldClass.isAssignableFrom(valueClass)) {
-									returnValue.add(valueClass);
-								}
-							} catch (ClassNotFoundException e) {
-								LOGGER.debug("Could not find create instance of " + fullClassName);
-							}
-						}
-					}
-				}
-			}
-			return returnValue;
-		}
 	}
 }
