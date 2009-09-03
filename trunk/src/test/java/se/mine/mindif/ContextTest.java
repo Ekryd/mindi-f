@@ -1,5 +1,8 @@
 package se.mine.mindif;
 
+import java.util.SortedMap;
+import java.util.TreeMap;
+
 import junit.framework.TestCase;
 
 public class ContextTest extends TestCase {
@@ -23,6 +26,13 @@ public class ContextTest extends TestCase {
 		new Context().inject(base);
 		assertNotNull(base.testComponent);
 		assertEquals(TestComponentImpl.class, base.testComponent.getClass());
+	}
+
+	public void testInstantiateMapInterface() {
+		final BaseComponentWithMap base = new BaseComponentWithMap();
+		new Context().inject(base);
+		assertNotNull(base.map);
+		assertEquals(TreeMap.class, base.map.getClass());
 	}
 
 	public void testInstantiateMultiImplExplicitClass() {
@@ -81,6 +91,15 @@ public class ContextTest extends TestCase {
 		}
 	}
 
+	static class BaseComponentWithMap {
+		@Dependency(TreeMap.class)
+		private SortedMap<String, String> map;
+
+		public SortedMap<String, String> getMap() {
+			return map;
+		}
+	}
+
 	static class BaseComponentWithMultiImplExplicit implements BaseComponentIF {
 		@Dependency(TestComponentImpl2.class)
 		private TestComponent2 testComponent;
@@ -132,7 +151,6 @@ public class ContextTest extends TestCase {
 	}
 
 	static class TestComponentImpl2 implements TestComponent2 {
-
 	}
 
 }
