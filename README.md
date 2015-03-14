@@ -33,7 +33,7 @@ If there is only one implementing class then the framework can find it (this is 
 ```
 
 
-For up-to-date documentation, please see the javadoc for the main class, [Context.java](http://code.google.com/p/mindi-f/source/browse/trunk/src/main/java/se/mine/mindi/Context.java)
+For up-to-date documentation, please see the javadoc for the main class, [Context.java](https://github.com/GreenThingSalad/mindi-f/blob/master/src/main/java/se/mine/mindif/Context.java)
 
 ## Requirements ##
 MinDI F requires Java 1.5. A friend [wrote](http://code.google.com/p/cheesymock/) "If you are running any previous version then seriously, what is wrong with you?".
