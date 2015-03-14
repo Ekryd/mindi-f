@@ -42,8 +42,6 @@ MinDI F requires Java 1.5. A friend [wrote](http://code.google.com/p/cheesymock/
 
 ## Download ##
 
-Download a Jar file containing the latest version of mindi-f from the [download list](http://code.google.com/p/mindi-f/downloads/list) page.
-
 Maven users can add this project as a dependency with the following additions to a POM.xml file:
 
 ```
@@ -65,5 +63,5 @@ Maven users can add this project as a dependency with the following additions to
 
 ## Disclaimer ##
 
-This framework is not designed for large scale enterprise systems, there are other frameworks for that (such as Spring, JSF or EJB3).
+This framework is not designed for large scale enterprise systems, there are other frameworks for that (such as Spring or EJB3).
 This framework focus on simplicity and a small codebase.
