@@ -36,7 +36,7 @@ If there is only one implementing class then the framework can find it (this is 
 For up-to-date documentation, please see the javadoc for the main class, [Context.java](https://github.com/GreenThingSalad/mindi-f/blob/master/src/main/java/se/mine/mindif/Context.java)
 
 ## Requirements ##
-MinDI F requires Java 1.5. A friend [wrote](http://code.google.com/p/cheesymock/) "If you are running any previous version then seriously, what is wrong with you?".
+MinDI F requires Java 1.5. 
 
 [Slf4j](http://www.slf4j.org/index.html) can be used, if you need logging.
 
